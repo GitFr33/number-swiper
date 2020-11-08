@@ -1,32 +1,57 @@
-.number-swiper{
-  display:flex;
-  font-size: 30vmin;
-  justify-content: center;
-  /* transition: 1s; */
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0));
-  align-items: center;
+
+.number-swiper, .number-swiper-column{
+  height: 3.5em;  /* column has to be the same hight as container for corect root margin*/
 }
-/*
-.number-swiper:active .number-swiper-column, .number-swiper:hover .number-swiper-column, .number-swiper:focus-within .number-swiper-column {
-  box-shadow: 0 0 .1em .1em rgba(0, 0, 0, 0.5) inset;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.5));
-  transition: 1s;
-} */
+
+.number-swiper{
+  user-select: none;
+  display:flex;
+  font-size: 20vmin;
+  font-size: calc(9vmin + 9vmax);;
+  justify-content: center;
+  align-items: center;
+  /* transition: .2s; */
+  position: relative;
+}
 
 .number-swiper-column::-webkit-scrollbar { display:none }
 
 .number-swiper-column{
   overflow: scroll;
   scrollbar-width: none;
-  height: 1.5em;
   list-style: none;
   padding: 0;
-  margin: auto 0;
+  margin: 0;
   scroll-snap-type: y mandatory;
+  -webkit-mask-image: linear-gradient(0deg, transparent 5%, black 40%, black 60%, transparent 100%);
+  mask-image: linear-gradient(0deg,  transparent 5%, black 40%, black 60%, transparent 100%);
+  transition:.2s;
+}
+
+.number-swiper-column-animating{
+  scroll-snap-type: none;
 }
 
 .number-swiper-column li{
+  /* nothing can be in em or % unites because that's changed by active and changes break scroll snap */
   scroll-snap-align: center;
-  height: 1em;
-  margin: .25em .03em .3em .1em;
+  transition: .2s;
+  display: grid;
+  align-items: center;
+
+  /* Fallbacks */
+  height: 22vmin;
+  width: 20vmin;
+  font-size: 20vmin;
+  line-height: 20vmin;
+  margin: .1vmin -.1vmin -.1vmin .1vmin;
+  height: calc(10vmin + 10vmax);
+  width: calc(8vmin + 8vmax);
+  font-size: calc(8vmin + 8vmax);
+  line-height: calc(8vmin + 8vmax);
+}
+
+.number-swiper-column li.number-swiper-active-number{
+  font-size: 28vmin;
+  font-size: calc(11vmin + 11vmax);
 }
